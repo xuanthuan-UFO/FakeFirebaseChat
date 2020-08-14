@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ActivityInputName">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarInputName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Profile"></androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/input_img"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/toolbarInputName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/person2_24"></ImageView>
+
+    <EditText
+        android:id="@+id/inputname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_img"
+        android:layout_marginTop="20dp"
+        android:hint="Input Name"
+        android:padding="10dp"
+        android:textAllCaps="true"
+        android:textColor="#070707"
+        android:textSize="18sp"></EditText>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#E34D00"
+        android:text="START"></Button>
+</RelativeLayout>

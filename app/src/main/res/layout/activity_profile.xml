@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.ActivityProfile">
+
+    <androidx.appcompat.widget.Toolbar
+        android:background="#FF9702"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/back"
+        app:title="Profile"></androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/add_img_profile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/person2_24"></ImageButton>
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:hint="Change Name"
+            android:id="@+id/name_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/add_img_profile"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="5dp"
+            android:drawableRight="@drawable/brush_24"
+            android:textSize="20sp"></TextView>
+
+
+        <EditText
+            android:id="@+id/change_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/name_profile"
+            android:layout_marginTop="50dp"
+            android:drawableRight="@drawable/brush_24"
+            android:hint="Change Password"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:textSize="16sp"></EditText>
+
+        <EditText
+            android:id="@+id/gmail_profile"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/change_password"
+            android:layout_marginTop="10dp"
+            android:drawableRight="@drawable/brush_24"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:textSize="16sp"></EditText>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="40dp">
+
+    <TextView
+        android:id="@+id/tenDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="TYPE YOUR NAME"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="bold"></TextView>
+
+    <EditText
+        android:id="@+id/change_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tenDialog"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:padding="8dp"></EditText>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/change_name"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="4dp"
+            android:text="OK"
+            android:textColor="#f30"
+            android:textSize="16sp"></TextView>
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/ok"
+            android:padding="4dp"
+            android:text="CANCEL"
+            android:textColor="#f30"
+            android:textSize="16sp"></TextView>
+    </RelativeLayout>
+</RelativeLayout>

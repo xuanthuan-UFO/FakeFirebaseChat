@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ActivityMessage">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarmessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FF9702"
+                app:navigationIcon="@drawable/back">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgAcounttoolbar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleType="fitXY">
+
+                    </ImageView>
+
+                    <TextView
+                        android:id="@+id/name_acount_toolbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/imgAcounttoolbar"
+                        android:textSize="16sp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/timeUserOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_acount_toolbar"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/imgAcounttoolbar"
+                        android:textSize="11sp"></TextView>
+
+                </RelativeLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottom"
+            android:layout_below="@+id/appbar"
+            android:layout_marginBottom="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <RelativeLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:padding="1dp">
+
+            <EditText
+                android:paddingLeft="10dp"
+                android:textColor="#0C0C0C"
+                android:hint="Input message"
+                android:padding="3dp"
+                android:background="@drawable/custom_edt_send"
+                android:id="@+id/text_send"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/btn_send">
+
+            </EditText>
+
+            <ImageButton
+                android:background="#FF9702"
+                android:src="@drawable/ic_baseline_send_24"
+                android:id="@+id/btn_send"
+                android:layout_marginBottom="5dp"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"></ImageButton>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

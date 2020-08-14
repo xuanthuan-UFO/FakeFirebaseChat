@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgChatAll"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"></de.hdodenhof.circleimageview.CircleImageView>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:background="@drawable/custom_background_message1"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imgChatAll">
+
+            <TextView
+                android:id="@+id/message_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:padding="5dp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/nameChatAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/message_all"></TextView>
+
+            <TextView
+                android:textSize="10sp"
+                android:textStyle="italic"
+                android:id="@+id/date_roomall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@id/message_all"
+                android:layout_toRightOf="@id/nameChatAll"></TextView>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF9702"
+        >
+
+        <TextView
+            android:textColor="#FFFDFC"
+            android:id="@+id/nameApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:text="Firebase Login"
+            android:textSize="30sp"></TextView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/groupEdtUser"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/nameApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputUser"
+                android:textColor="#F8F7F5"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:hint="Email" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            app:passwordToggleEnabled="true"
+            android:id="@+id/groupEdtPass"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/groupEdtUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputPassword"
+                android:layout_marginLeft="50dp"
+                android:textColor="#F8F7F5"
+                android:layout_marginRight="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:inputType="textPassword"
+                android:hint="Password" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/groupEdtPass"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="50dp"
+            android:background="#EF7136"
+            android:gravity="center"
+            android:text="Login"
+            android:textAllCaps="true"
+            android:textColor="#FFFDFC"
+            android:textSize="20sp"></Button>
+
+        <TextView
+            android:id="@+id/txt"
+            android:text="Forgot your password"
+            android:textAllCaps="true"
+            android:textColor="#F6F5F5"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="14sp"
+            android:layout_below="@id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="30dp"
+            android:text="No User yet?"
+            android:textColor="#EFEAE9"
+            android:textSize="14sp"></TextView>
+
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:id="@+id/startActivityRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt"
+            android:textAllCaps="true"
+            android:layout_toRightOf="@id/txt1"
+            android:layout_marginTop="30dp"
+            android:text="No User yet?"
+            android:textColor="#EFEAE9"
+            android:textSize="14sp"></TextView>
+
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

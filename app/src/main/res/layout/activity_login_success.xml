@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:openDrawer="start">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activity.ActivityLoginSuccess">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                app:title="Conversations"
+                android:background="#FF9702"
+                app:titleTextColor="#F4F2F1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <FrameLayout
+            android:layout_below="@id/appbar"
+            android:background="#923C00"
+            android:id="@+id/framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        app:menu="@menu/navigation_menu"
+        app:headerLayout="@layout/head_nav"
+        android:layout_width="290dp"
+        android:layout_gravity="start"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/nav_view_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:menu="@menu/navigation_menubottom"
+                android:layout_alignParentBottom="true"
+                >
+            </com.google.android.material.navigation.NavigationView>
+
+        </RelativeLayout>
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

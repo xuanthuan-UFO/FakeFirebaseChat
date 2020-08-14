@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAF8F7">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:padding="2dp"
+        android:id="@+id/viewChatAll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom"
+        android:layout_below="@+id/appbar"
+        android:layout_marginBottom="3dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:padding="1dp">
+
+        <EditText
+            android:paddingLeft="10dp"
+            android:id="@+id/text_send_All"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toLeftOf="@+id/btn_send"
+            android:background="@drawable/custom_edt_send"
+            android:hint="Input message"
+            android:padding="3dp"
+            android:textColor="#0B0A0A">
+
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/btn_send_All"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="5dp"
+            android:background="#FF9702"
+            android:src="@drawable/ic_baseline_send_24"></ImageButton>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:checked="true"
+            android:id="@+id/conversations"
+            android:icon="@drawable/message_24"
+            android:title="Conversations"></item>
+        <item
+            android:id="@+id/user"
+            android:icon="@drawable/people_24"
+            android:title="Users"></item>
+        <item
+            android:id="@+id/global_room"
+            android:icon="@drawable/world_24"
+            android:title="Global_room"></item>
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/share"
+                android:icon="@drawable/share_24"
+                android:title="Share"></item>
+        </menu>
+    </item>
+
+</menu>
