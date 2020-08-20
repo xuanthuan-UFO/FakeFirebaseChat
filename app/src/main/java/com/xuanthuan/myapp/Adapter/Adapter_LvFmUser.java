@@ -15,6 +15,8 @@ import com.xuanthuan.myapp.R;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Adapter_LvFmUser extends BaseAdapter {
 
     Context context;
@@ -43,7 +45,7 @@ public class Adapter_LvFmUser extends BaseAdapter {
     }
 
     class Vholder_user{
-        ImageView img;
+        CircleImageView img;
         TextView txtName;
     }
 

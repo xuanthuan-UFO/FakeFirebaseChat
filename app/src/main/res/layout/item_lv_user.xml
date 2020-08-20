@@ -4,13 +4,11 @@
     android:layout_height="wrap_content"
     android:padding="5dp">
 
-    <ImageView
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher"
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_item_user"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="10dp"></ImageView>
+        android:layout_marginLeft="10dp"></de.hdodenhof.circleimageview.CircleImageView>
 
     <TextView
         android:id="@+id/name_item_user"

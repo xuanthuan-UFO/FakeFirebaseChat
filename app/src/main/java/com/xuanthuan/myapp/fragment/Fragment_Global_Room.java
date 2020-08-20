@@ -57,6 +57,8 @@ public class Fragment_Global_Room extends Fragment {
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
 
+
+        //setkhoảng cách
         recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(20));
 
 

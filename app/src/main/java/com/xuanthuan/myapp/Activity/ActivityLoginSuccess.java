@@ -53,7 +53,7 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
     DrawerLayout drawerLayout;
     FrameLayout frameLayout;
     TextView txtEmail_account, txtName_account;
-    ImageView img_Acount;
+    CircleImageView img_Acount;
     String userID, nameAcount, urlImgAcount, email;
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
@@ -163,6 +163,7 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
         txtName_account = headview.findViewById(R.id.name_account);
         txtEmail_account = headview.findViewById(R.id.gmail_account);
         img_Acount = headview.findViewById(R.id.img_account);
+
         drawerLayout = findViewById(R.id.drawer_layout);
     }
 
@@ -234,7 +235,6 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
 
     @Override
     protected void onResume() {
-
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

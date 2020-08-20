@@ -27,13 +27,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imgAcounttoolbar"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:scaleType="fitXY">
+                        android:layout_height="50dp">
 
-                    </ImageView>
+                    </de.hdodenhof.circleimageview.CircleImageView>
 
                     <TextView
                         android:id="@+id/name_acount_toolbar"

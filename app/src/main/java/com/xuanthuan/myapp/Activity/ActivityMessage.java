@@ -44,7 +44,7 @@ public class ActivityMessage extends AppCompatActivity {
     DrawerLayout drawerLayout;
 Toolbar toolbar;
 TextView txtName, txtTimeUserOn;
-ImageView imgAcout;
+CircleImageView imgAcout;
 EditText edt_textSend;
 ImageButton bnt_send;
 

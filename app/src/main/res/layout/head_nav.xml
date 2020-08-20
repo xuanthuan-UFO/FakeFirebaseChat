@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:background="@drawable/custom_head_nav"
     android:orientation="vertical">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_account"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="7dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/person_24"></ImageView>
+        android:layout_marginTop="7dp">
+    </de.hdodenhof.circleimageview.CircleImageView>
 
     <TextView
         android:id="@+id/name_account"

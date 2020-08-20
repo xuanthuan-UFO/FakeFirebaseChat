@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,16 +37,19 @@ import com.xuanthuan.myapp.R;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ActivityProfile extends AppCompatActivity {
-    EditText edt_gmail_profile, edt_change_password;
-    TextView txt_name_profile;
-    ImageButton img_Profile;
+    EditText edt_gmail_profile;
+    TextView txt_name_profile, txt_change_password;
+    CircleImageView img_Profile;
     Toolbar toolbar;
+
     FirebaseAuth auth;
     DatabaseReference databaseReference;
+    StorageReference storageReference;
+    FirebaseStorage storage;
+    FirebaseUser user;
+
     String useriid, img;
     int PICK_IMAGE_REQUEST = 983;
-    FirebaseStorage storage;
-    StorageReference storageReference;
     Uri uriImg;
     ObjectUser objectUser;
 
@@ -55,6 +59,7 @@ public class ActivityProfile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         toolbar = findViewById(R.id.toolbar);
         auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
         useriid = auth.getCurrentUser().getUid();
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(useriid);
@@ -67,11 +72,20 @@ public class ActivityProfile extends AppCompatActivity {
         String name = bundle.getString("name");
         customtoolbar();
         init();
+
         txt_name_profile.setText(name);
         edt_gmail_profile.setText(email);
         edt_gmail_profile.setEnabled(false);
 
+        txt_change_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogPass();
+            }
+        });
 
+
+        //chọn ảnh
         img_Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +96,7 @@ public class ActivityProfile extends AppCompatActivity {
             }
         });
 
-
+        //đổi tên
         txt_name_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +107,43 @@ public class ActivityProfile extends AppCompatActivity {
 
     }
 
+
+    private void dialogPass() {
+        final Dialog dialog1 = new Dialog(this);
+        dialog1.setContentView(R.layout.dialog_change_password);
+        final EditText edtPass = dialog1.findViewById(R.id.change_name);
+        final EditText edtPassagain = dialog1.findViewById(R.id.againpass);
+        TextView btnok = dialog1.findViewById(R.id.ok);
+        TextView btncanel = dialog1.findViewById(R.id.cancel);
+
+        btnok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String textPass = edtPass.getText().toString().trim();
+                String textPassagain = edtPassagain.getText().toString().trim();
+
+                if (textPass.equals(textPassagain)) {
+                    user.updatePassword(textPass).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(ActivityProfile.this, "Change Password Success", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    edtPassagain.setError("Không trùng khớp");
+                }
+            }
+        });
+
+        btncanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog1.dismiss();
+            }
+        });
+
+        dialog1.show();
+    }
     @Override
     protected void onResume() {
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -187,7 +238,7 @@ public class ActivityProfile extends AppCompatActivity {
     private void init() {
         edt_gmail_profile = findViewById(R.id.gmail_profile);
         txt_name_profile = findViewById(R.id.name_profile);
-        edt_change_password = findViewById(R.id.change_password);
+        txt_change_password = findViewById(R.id.change_password);
         img_Profile = findViewById(R.id.add_img_profile);
     }
 

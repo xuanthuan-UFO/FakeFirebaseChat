@@ -8,6 +8,7 @@
     tools:context=".Activity.ActivityProfile">
 
     <androidx.appcompat.widget.Toolbar
+        app:titleTextColor="#FAF8F8"
         android:background="#FF9702"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -21,16 +22,17 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical">
 
-        <ImageButton
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:background="@drawable/custom_button_img_profile"
             android:id="@+id/add_img_profile"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/person2_24"></ImageButton>
+            ></de.hdodenhof.circleimageview.CircleImageView>
 
         <TextView
+            android:padding="10dp"
             android:layout_marginLeft="20dp"
             android:hint="Change Name"
             android:id="@+id/name_profile"
@@ -43,7 +45,8 @@
             android:textSize="20sp"></TextView>
 
 
-        <EditText
+        <TextView
+            android:padding="10dp"
             android:id="@+id/change_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -53,9 +56,10 @@
             android:hint="Change Password"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:textSize="16sp"></EditText>
+            android:textSize="16sp"></TextView>
 
         <EditText
+            android:padding="10dp"
             android:id="@+id/gmail_profile"
             android:layout_width="match_parent"
             android:layout_height="50dp"
