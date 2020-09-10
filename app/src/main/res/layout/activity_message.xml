@@ -49,8 +49,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/name_acount_toolbar"
                         android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@id/imgAcounttoolbar"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="14sp"
+                        android:layout_toRightOf="@id/imgAcounttoolbar"></TextView>
 
                 </RelativeLayout>
 

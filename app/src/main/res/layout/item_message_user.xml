@@ -5,6 +5,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/containerMessage"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:padding="8dp">
@@ -26,6 +27,17 @@
             android:padding="8dp"
             android:text="hello"
             android:textSize="18sp"></TextView>
+
+        <TextView
+            android:id="@+id/timeMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/message_master"
+            android:layout_toRightOf="@id/profile_img_master"
+            android:gravity="left"></TextView>
     </RelativeLayout>
+
 </RelativeLayout>
 

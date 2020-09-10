@@ -28,9 +28,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.xuanthuan.myapp.Object.ObjectStateOnline;
 import com.xuanthuan.myapp.Object.ObjectUser;
+import com.xuanthuan.myapp.Object.SetState;
 import com.xuanthuan.myapp.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,18 +42,21 @@ import javax.annotation.Nullable;
 
 public class MainActivity extends AppCompatActivity {
     public FirebaseAuth mAuth;
-EditText edtInputUser, edtInputPassword;
-Button btnLogin;
-TextView startActivityRegister;
-    public FirebaseFirestore db;
-    ObjectUser objectUser;
+    EditText edtInputUser, edtInputPassword;
+    Button btnLogin;
+    TextView startActivityRegister;
     DatabaseReference reference;
+    String userID;
+
+    SetState setState = new SetState();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference("users");
+
         init();
 
 
@@ -62,7 +69,7 @@ TextView startActivityRegister;
                 if (user.isEmpty()) {
                     edtInputUser.setError("Email is Required!");
                     edtInputUser.requestFocus();
-                }else if (password.isEmpty()) {
+                } else if (password.isEmpty()) {
                     edtInputPassword.setError("Password is Requied!");
                     edtInputPassword.requestFocus();
                 } else if (user.isEmpty() && password.isEmpty()) {
@@ -74,10 +81,7 @@ TextView startActivityRegister;
                             if (task.isSuccessful()) {
                                 FirebaseUser userFirebase = mAuth.getCurrentUser();
 
-                                final String userID = mAuth.getCurrentUser().getUid();
-
-                                reference = FirebaseDatabase.getInstance().getReference("users");
-
+                                userID = mAuth.getCurrentUser().getUid();
                                 updateUI(userFirebase);
                             } else {
                                 Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
@@ -105,6 +109,23 @@ TextView startActivityRegister;
         startActivityRegister = findViewById(R.id.startActivityRegister);
 
     }
+
+//    public void setState(String state) {     //set trạng thái online offline
+//        SimpleDateFormat formattime = new SimpleDateFormat("HH:mm");
+//        SimpleDateFormat formatdate = new SimpleDateFormat("dd MM yyyy");
+//
+//        Calendar calendar = Calendar.getInstance();
+//
+//        String time = formattime.format(calendar.getTime());
+//        String date = formatdate.format(calendar.getTime());
+//
+//        ObjectStateOnline objectStateOnline = new ObjectStateOnline(date,time, state);
+//
+//        String userID = mAuth.getCurrentUser().getUid();
+//        reference.child(userID).child("UserState").setValue(objectStateOnline);
+//    }
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -115,6 +136,7 @@ TextView startActivityRegister;
 
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
+            setState.setState("Online");
             startActivity(new Intent(this, ActivityLoginSuccess.class));
         }
     }

@@ -41,6 +41,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.gson.internal.$Gson$Preconditions;
 import com.xuanthuan.myapp.Adapter.Adapter_vPager_FmUser;
 import com.xuanthuan.myapp.Object.ObjectUser;
+import com.xuanthuan.myapp.Object.SetState;
 import com.xuanthuan.myapp.R;
 import com.xuanthuan.myapp.fragment.Fragment_Conversation;
 import com.xuanthuan.myapp.fragment.Fragment_Global_Room;
@@ -63,6 +64,7 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
     DatabaseReference databaseReference;
 
     ObjectUser objectUser;
+    SetState setState = new SetState();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,7 +176,8 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
         } else {
             super.onBackPressed();
         }
-
+        /////////////////////////////////////////////////////////////////////////
+        setState.setState("Offline");
         FirebaseAuth.getInstance().signOut();
         finish();
     }
@@ -219,7 +222,8 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
                 intent.putExtra("data", bundle);
                 startActivity(intent);
                 break;
-            case R.id.logout:
+            case R.id.logout: //////////////////////////////////////////////////////////
+                setState.setState("Offline");
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 break;
@@ -260,6 +264,7 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
 
         super.onResume();
     }
+
 }
 
 

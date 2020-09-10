@@ -26,10 +26,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.xuanthuan.myapp.Adapter.Adapter_RoomMessages;
 import com.xuanthuan.myapp.Object.ObjectChat;
 import com.xuanthuan.myapp.Object.ObjectMessenger;
+import com.xuanthuan.myapp.Object.ObjectStateOnline;
 import com.xuanthuan.myapp.Object.ObjectUser;
 import com.xuanthuan.myapp.R;
 
@@ -37,24 +39,29 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ActivityMessage extends AppCompatActivity {
+
     DrawerLayout drawerLayout;
-Toolbar toolbar;
-TextView txtName, txtTimeUserOn;
-CircleImageView imgAcout;
-EditText edt_textSend;
-ImageButton bnt_send;
+    Toolbar toolbar;
+    TextView txtName, txtTimeUserOn;
+    CircleImageView imgAcout;
+    EditText edt_textSend;
+    ImageButton bnt_send;
 
-String idCusstomer, idMasser, nameCusstomer, imgCusstomer, nameUser, imgUser;
-DatabaseReference getImgCusstomer, getInforUser;
-FirebaseUser user1;
+    String idCusstomer, idMasser, nameCusstomer, imgCusstomer, nameUser, imgUser, iduser;
+    DatabaseReference getImgCusstomer, getInforUser;
+    FirebaseUser user1;
 
-RecyclerView recyclerView;
-Adapter_RoomMessages adapter_roomMessages;
-ArrayList<ObjectChat> arrayList;
+    RecyclerView recyclerView;
+    Adapter_RoomMessages adapter_roomMessages;
+    ArrayList<ObjectChat> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +71,14 @@ ArrayList<ObjectChat> arrayList;
         takedata();
         dataFragment_Conversation();
         setToolbar();
+        getStateUser();
         user1 = FirebaseAuth.getInstance().getCurrentUser();
+        iduser = user1.getUid();
 
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
-
 
 
         bnt_send.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +89,13 @@ ArrayList<ObjectChat> arrayList;
                 if (text.isEmpty()) {
                     Toast.makeText(ActivityMessage.this, "input message", Toast.LENGTH_SHORT).show();
                 } else {
-                    sentMessage(idMasser, idCusstomer, text, nameCusstomer, imgCusstomer, String.valueOf(System.currentTimeMillis()), nameUser, imgUser);
+                    SimpleDateFormat formattime = new SimpleDateFormat("HH:mm");
+
+                    Calendar calendar = Calendar.getInstance();
+
+                    String date1 = formattime.format(calendar.getTime());
+                    // String.valueOf(System.currentTimeMillis())
+                    sentMessage(idMasser, idCusstomer, text, nameCusstomer, imgCusstomer, date1, nameUser, imgUser);
                     edt_textSend.setText("");
                 }
             }
@@ -89,37 +103,60 @@ ArrayList<ObjectChat> arrayList;
 
     }
 
-    private void sentMessage(String sender, String receiver, String message, String nameReceiver, String urlImgReceiver, String date, String nameUser, String urlimgUser){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        ObjectChat objectChat = new ObjectChat(sender, receiver, message, nameReceiver, urlImgReceiver, date,nameUser, urlimgUser);
-        reference.child("Chats").push().setValue(objectChat);
-        Toast.makeText(ActivityMessage.this, "sented", Toast.LENGTH_SHORT).show();
-    }
-
-    private void readMessage(final String myid, final String userid, final String imgurl){
-        arrayList = new ArrayList<>();
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
-        reference.addValueEventListener(new ValueEventListener() {
+    public void getStateUser() {
+        DatabaseReference getState = FirebaseDatabase.getInstance().getReference("users");
+        getState.child(idCusstomer).child("UserState").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                arrayList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    ObjectChat objectChat = snapshot.getValue(ObjectChat.class);
-
-                   if (objectChat.getReceiver().equals(myid) && objectChat.getSender().equals(userid) ||
-                            objectChat.getSender().equals(myid) && objectChat.getReceiver().equals(userid)) {
-                    arrayList.add(objectChat);
-                    }
-
-                }
-                adapter_roomMessages = new Adapter_RoomMessages(getApplicationContext(), arrayList,imgurl);
-                recyclerView.setAdapter(adapter_roomMessages);
+                ObjectStateOnline objectStateOnline = dataSnapshot.getValue(ObjectStateOnline.class);
+                txtTimeUserOn.setText(objectStateOnline.getState());
+                Log.d("online", "onDataChange: " + txtTimeUserOn);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+
+    private void sentMessage(String sender, String receiver, String message, String nameReceiver, String urlImgReceiver, String date, String nameUser, String urlimgUser) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
+
+        ObjectChat objectChat = new ObjectChat(sender, receiver, message, nameReceiver, urlImgReceiver, date, nameUser, urlimgUser);
+
+        reference.push().setValue(objectChat);
+        Toast.makeText(ActivityMessage.this, "sented", Toast.LENGTH_SHORT).show();
+    }
+
+    private void readMessage(final String myid, final String userid, final String imgurl) {
+        arrayList = new ArrayList<>();
+        adapter_roomMessages = new Adapter_RoomMessages(getApplicationContext(), arrayList, imgurl);
+        recyclerView.setAdapter(adapter_roomMessages);
+        Log.d("lolo", "readMessage: ");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        reference.child("Chats").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayList.clear();
+                if (dataSnapshot.hasChildren()) {
+                    Log.d("kaka", "onDataChange: ");
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        ObjectChat objectChat = snapshot.getValue(ObjectChat.class);
+                        if (objectChat.getReceiver().equals(myid) && objectChat.getSender().equals(userid) ||
+                                objectChat.getSender().equals(myid) && objectChat.getReceiver().equals(userid)) {
+                            arrayList.add(objectChat);
+                        }
+                    }
+                    adapter_roomMessages.notifyDataSetChanged();
+                } else {
+                    Log.d("hoho", "onDataChange: ");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }
@@ -144,7 +181,7 @@ ArrayList<ObjectChat> arrayList;
                     Glide.with(getApplicationContext()).load(user.getUrlimg()).into(imgAcout);
 
                     Log.d("TAG", "onDataChange: " + idMasser + "  " + user.getId() + user.getUrlimg());
-                    readMessage(user1.getUid(), idCusstomer , user.getUrlimg());
+                    readMessage(user1.getUid(), idCusstomer, user.getUrlimg());
 
                 }
 
@@ -157,7 +194,7 @@ ArrayList<ObjectChat> arrayList;
 
     }
 
-        private void dataFragment_Conversation(){
+    private void dataFragment_Conversation() {
         Intent intent1 = getIntent();
         Bundle bundle2 = intent1.getBundleExtra("data2");
         if (bundle2 != null) {
@@ -176,7 +213,7 @@ ArrayList<ObjectChat> arrayList;
                     Glide.with(getApplicationContext()).load(user.getUrlimg()).into(imgAcout);
 
                     Log.d("TAG", "onDataChange: " + idMasser + "  " + user.getId() + user.getUrlimg());
-                    readMessage(user1.getUid(), idCusstomer , user.getUrlimg());
+                    readMessage(user1.getUid(), idCusstomer, user.getUrlimg());
 
                 }
 
@@ -229,7 +266,7 @@ ArrayList<ObjectChat> arrayList;
 
     @Override
     protected void onStart() {
-        getInforUser= FirebaseDatabase.getInstance().getReference("users").child(idMasser);
+        getInforUser = FirebaseDatabase.getInstance().getReference("users").child(idMasser);
         getInforUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

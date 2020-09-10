@@ -42,7 +42,7 @@ public class Fragment_user extends Fragment {
     FirebaseAuth auth;
     FirebaseUser user;
     String idCusstomer, userID, nameCustomer, urlimgCustomer;
-    DatabaseReference reference, reference1;
+    DatabaseReference reference;
 
 
     @Nullable
@@ -115,7 +115,6 @@ public class Fragment_user extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("user", "onCancelled: " + databaseError.getMessage());
             }
         });
 

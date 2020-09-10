@@ -70,7 +70,7 @@ public class Adapter_LvFmUser extends BaseAdapter {
         ObjectUser objectUser = list.get(i);
         holder_user.txtName.setText(objectUser.getName());
 
-        Glide.with(context).load(objectUser.getUrlimg()) .placeholder(R.drawable.ic_launcher_background)
+        Glide.with(context).load(objectUser.getUrlimg()).placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground).into(holder_user.img);
 
         return view;

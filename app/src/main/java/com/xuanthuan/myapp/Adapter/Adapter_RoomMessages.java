@@ -59,6 +59,7 @@ public class Adapter_RoomMessages extends RecyclerView.Adapter<Adapter_RoomMessa
         ObjectChat objectChat = list.get(position);
 
         holder.showMessage.setText(objectChat.getMessage());
+        holder.timeMessage.setText(objectChat.getDate());
 
         Glide.with(context).load(imgurrl).into(holder.img_sender);
 
@@ -72,12 +73,13 @@ public class Adapter_RoomMessages extends RecyclerView.Adapter<Adapter_RoomMessa
 
 
     public class ViewholderRoom extends RecyclerView.ViewHolder{
-
+        TextView timeMessage;
         TextView showMessage;
         CircleImageView img_sender;
         public ViewholderRoom(@NonNull View itemView) {
             super(itemView);
 
+            timeMessage = itemView.findViewById(R.id.timeMessage);
             showMessage = itemView.findViewById(R.id.message_master);
             img_sender = itemView.findViewById(R.id.profile_img_master);
 
