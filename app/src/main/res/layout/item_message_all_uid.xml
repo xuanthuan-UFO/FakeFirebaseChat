@@ -21,19 +21,21 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/imgChatAll">
 
+
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:id="@+id/nameChatAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+
             <TextView
                 android:id="@+id/message_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:padding="5dp"
+                android:layout_below="@id/nameChatAll"
                 android:textStyle="bold"></TextView>
-
-            <TextView
-                android:id="@+id/nameChatAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/message_all"></TextView>
 
             <TextView
                 android:textSize="10sp"
@@ -42,8 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_below="@id/message_all"
-                android:layout_toRightOf="@id/nameChatAll"></TextView>
+                android:layout_below="@id/nameChatAll"
+                android:layout_toRightOf="@id/message_all"></TextView>
 
         </RelativeLayout>
 

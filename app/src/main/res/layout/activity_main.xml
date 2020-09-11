@@ -109,7 +109,21 @@
             android:textColor="#EFEAE9"
             android:textSize="14sp"></TextView>
 
+        <com.facebook.login.widget.LoginButton
+            android:layout_below="@id/startActivityRegister"
+            android:id="@+id/login_faceBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp" />
 
+        <com.google.android.gms.common.SignInButton
+            android:layout_below="@id/login_faceBook"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/login_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
 </LinearLayout>

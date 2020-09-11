@@ -24,6 +24,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -62,6 +66,8 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
     FirebaseAuth auth;
     FirebaseUser user;
     DatabaseReference databaseReference;
+
+    GoogleSignInClient mGoogleSignInClient;
 
     ObjectUser objectUser;
     SetState setState = new SetState();
@@ -178,7 +184,10 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
         }
         /////////////////////////////////////////////////////////////////////////
         setState.setState("Offline");
+
+
         FirebaseAuth.getInstance().signOut();
+        LoginManager.getInstance().logOut();
         finish();
     }
 
@@ -225,6 +234,7 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
             case R.id.logout: //////////////////////////////////////////////////////////
                 setState.setState("Offline");
                 FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
                 finish();
                 break;
         }

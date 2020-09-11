@@ -2,4 +2,6 @@
     <string name="app_name">My App</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="facebook_app_id">345446016583347</string> <string name="fb_login_protocol_scheme">fb345446016583347</string>
+
 </resources>
