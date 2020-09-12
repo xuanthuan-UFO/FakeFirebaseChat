@@ -75,7 +75,7 @@
             android:textSize="20sp"></Button>
 
         <TextView
-            android:id="@+id/txt"
+            android:id="@+id/txtFogotPassword"
             android:text="Forgot your password"
             android:textAllCaps="true"
             android:textColor="#F6F5F5"
@@ -89,11 +89,11 @@
             android:id="@+id/txt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txt"
+            android:layout_below="@id/txtFogotPassword"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="30dp"
             android:text="No User yet?"
-            android:textColor="#EFEAE9"
+            android:textColor=  "#EFEAE9"
             android:textSize="14sp"></TextView>
 
         <TextView
@@ -101,11 +101,11 @@
             android:id="@+id/startActivityRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txt"
+            android:layout_below="@id/txtFogotPassword"
             android:textAllCaps="true"
             android:layout_toRightOf="@id/txt1"
             android:layout_marginTop="30dp"
-            android:text="No User yet?"
+            android:text="REGISTER NOW"
             android:textColor="#EFEAE9"
             android:textSize="14sp"></TextView>
 
@@ -117,13 +117,13 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp" />
 
-        <com.google.android.gms.common.SignInButton
-            android:layout_below="@id/login_faceBook"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:id="@+id/login_google"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+<!--        <com.google.android.gms.common.SignInButton-->
+<!--            android:layout_below="@id/login_faceBook"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:id="@+id/login_google"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
     </RelativeLayout>
 
 </LinearLayout>

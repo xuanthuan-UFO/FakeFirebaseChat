@@ -29,7 +29,9 @@ import com.xuanthuan.myapp.Object.ObjectUser;
 import com.xuanthuan.myapp.Object.VerticalSpaceItemDecoration;
 import com.xuanthuan.myapp.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Fragment_Global_Room extends Fragment {
 
@@ -72,7 +74,13 @@ public class Fragment_Global_Room extends Fragment {
                 if (message.isEmpty()) {
                     Toast.makeText(getActivity(), "Input message", Toast.LENGTH_SHORT).show();
                 } else {
-                    sendMessage(nameUser, uID, imgUser, String.valueOf(System.currentTimeMillis()), message);
+                    SimpleDateFormat formattime = new SimpleDateFormat("HH:mm");
+
+                    Calendar calendar = Calendar.getInstance();
+
+                    String date1 = formattime.format(calendar.getTime());
+
+                    sendMessage(nameUser, uID, imgUser, date1, message);
                     edtMessage.setText("");
                 }
             }

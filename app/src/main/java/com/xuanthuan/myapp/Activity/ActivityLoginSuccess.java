@@ -84,7 +84,6 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
 
         init();
         setToolbar();
-        //addFm();
         setTxtEmail();
 
         //viewPager.setCurrentItem(0);
@@ -185,10 +184,9 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
         /////////////////////////////////////////////////////////////////////////
         setState.setState("Offline");
 
-
         FirebaseAuth.getInstance().signOut();
         LoginManager.getInstance().logOut();
-        finish();
+        startActivity(new Intent(ActivityLoginSuccess.this, MainActivity.class));
     }
 
     @Override
@@ -235,7 +233,7 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
                 setState.setState("Offline");
                 FirebaseAuth.getInstance().signOut();
                 LoginManager.getInstance().logOut();
-                finish();
+                startActivity(new Intent(ActivityLoginSuccess.this, MainActivity.class));
                 break;
         }
 
@@ -275,6 +273,14 @@ public class ActivityLoginSuccess extends AppCompatActivity implements Navigatio
         super.onResume();
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        setState.setState("Offline");
+
+    }
 }
 
 
